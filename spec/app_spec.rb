@@ -9,6 +9,12 @@ describe HerokuStatus::App do
         HerokuStatus::App.get(app_name).commit.should == "d12cf91"
       end
     end
+
+    it "should return the current branches" do
+      VCR.use_cassette('heroku_release') do
+        HerokuStatus::App.get(app_name).current_branches.should include('master')
+      end
+    end
   end
 
 end

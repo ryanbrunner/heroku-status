@@ -4,8 +4,6 @@ require 'rest_client'
 module HerokuStatus
   class App
     def self.get(app_name)
-      # TODO
-
       response = RestClient.get "https://:#{ENV['HEROKU_KEY']}@api.heroku.com/apps/#{app_name}/releases", {:accept => :json}
       json = JSON.parse(response)
       last_release = json.last
@@ -18,6 +16,10 @@ module HerokuStatus
 
     def commit
       @release_json['commit']
+    end
+
+    def current_branches
+
     end
   end
 end
