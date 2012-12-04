@@ -22,5 +22,9 @@ module HerokuStatus
     def current_branches
       @source_repo.branches.select{|name,commit| commit == self.commit }.keys
     end
+
+    def compare_branches
+      Git.new.compare_branches(commit)
+    end
   end
 end

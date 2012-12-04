@@ -13,6 +13,13 @@ module HerokuStatus
       Hash[ repo.branches.map {|b| [b.name, b.commit.to_s[0..6]] } ]
     end
 
+    def compare_branches(heroku_commit)
+      branches.map do |branch|
+        repo.log("#{heroku_commit}..#{branch}")
+      end
+
+    end
+
   private
 
 
