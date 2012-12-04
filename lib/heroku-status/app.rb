@@ -19,7 +19,7 @@ module HerokuStatus
     end
 
     def current_branches
-
+      Git.new.branches.select{|name,commit| commit == self.commit }.keys
     end
   end
 end

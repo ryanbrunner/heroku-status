@@ -12,6 +12,7 @@ describe HerokuStatus::App do
 
     it "should return the current branches" do
       VCR.use_cassette('heroku_release') do
+        HerokuStatus::Git.any_instance.stub(:branches).and_return("master" => "d12cf91")
         HerokuStatus::App.get(app_name).current_branches.should include('master')
       end
     end
