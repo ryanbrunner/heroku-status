@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe HerokuStatus::App do
   describe "commit" do
-    let(:app_name) { "test_app" }
+    let(:app_name) { "forzapanino2" }
 
     it "should return the current commit" do
-      HerokuStatus::App.get(app_name).commit.should == "TODO: Current commit"
+      VCR.use_cassette('heroku_release') do
+        HerokuStatus::App.get(app_name).commit.should == "d12cf91"
+      end
     end
   end
 
