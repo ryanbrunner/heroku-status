@@ -1,7 +1,6 @@
 require "heroku-status/version"
+require 'heroku-status/app'
 
-module Heroku
-  module Status
+module HerokuStatus
     # Your code goes here...
-  end
 end
